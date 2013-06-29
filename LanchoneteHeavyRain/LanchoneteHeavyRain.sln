@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanchoneteHeavyRain", "LanchoneteHeavyRain\LanchoneteHeavyRain.csproj", "{9A6EFE84-FA3A-4929-8BCF-3FAC3DEED61A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MontadoraHeavyRain", "MontadoraHeavyRain\MontadoraHeavyRain.csproj", "{AD69AD84-5987-4F2B-BFE5-6DC07159752B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A6EFE84-FA3A-4929-8BCF-3FAC3DEED61A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A6EFE84-FA3A-4929-8BCF-3FAC3DEED61A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A6EFE84-FA3A-4929-8BCF-3FAC3DEED61A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A6EFE84-FA3A-4929-8BCF-3FAC3DEED61A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD69AD84-5987-4F2B-BFE5-6DC07159752B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD69AD84-5987-4F2B-BFE5-6DC07159752B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD69AD84-5987-4F2B-BFE5-6DC07159752B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD69AD84-5987-4F2B-BFE5-6DC07159752B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
