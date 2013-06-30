@@ -10,12 +10,24 @@ namespace LanchoneteHeavyRain
     {
         void Visit(Sandwiche sandwiche);
         void Visit(Drink drink);
+        void Visit(Ingredient ingredient);
+    }
+
+    public interface ISandwichVisitor
+    {
+        void Visit(Ingredient ingredient);
     }
 
     public interface IAsset
     {
         void Accept(IComboVisitor visitor);
     }
+
+    public interface ISandwichAsset
+    {
+        void Accept(IComboVisitor visitor);
+    }
+
 
     public class ComboVisitor :IComboVisitor
     {
@@ -31,6 +43,9 @@ namespace LanchoneteHeavyRain
             Price += drink.Price + 0.1;
         }
 
-        
+        public void Visit(Ingredient ingredient)
+        {
+            Price += ingredient.Price;
+        }
     }
 }

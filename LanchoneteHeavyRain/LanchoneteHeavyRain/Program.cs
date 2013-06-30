@@ -10,14 +10,14 @@ namespace LanchoneteHeavyRain
     {
         static void Main(string[] args)
         {
-            double price = new double();
+            // var price = new double();
 
             var combo = new Combo();
             combo.Assets.Add(new Drink{Name = "Coca", Size = 300, Price = 3});
             combo.Assets.Add(new Sandwiche
                 {
                     Name = "BK Supremo",
-                    IngredientsesList = new List<Ingredient> {new Ingredient {IngredientName = "Pao"}, new Ingredient(){IngredientName = "Carne"}},
+                    Assets = { new Ingredient { IngredientName = "Pao" }, new Ingredient() { IngredientName = "Carne" } },
                     Price = 6
                 });
 
@@ -25,7 +25,7 @@ namespace LanchoneteHeavyRain
             combo.Assets.Add(new Sandwiche
             {
                 Name = "Heavy Chicken",
-                IngredientsesList = { new Ingredient { IngredientName = "Pao" }, new Ingredient() { IngredientName = "Frango" }, new Ingredient() { IngredientName = "bacon", Price = 2} },
+                Assets = { new Ingredient { IngredientName = "Pao" }, new Ingredient() { IngredientName = "Frango" }, new Ingredient() { IngredientName = "bacon", Price = 2 } },
                 Price = 5
             });
 
@@ -42,6 +42,11 @@ namespace LanchoneteHeavyRain
             var visitor = new ComboVisitor();
 
             combo.Accept(visitor);
+
+            
+
+            
+            
 
             //foreach (var cmb in combo.SandwichesList)
             //{

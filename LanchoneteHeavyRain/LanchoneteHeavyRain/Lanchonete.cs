@@ -8,13 +8,19 @@ namespace LanchoneteHeavyRain
 {
     public class Combo : IAsset
     {
-        
         public List<IAsset> Assets = new List<IAsset>();
 
         public void Accept(IComboVisitor visitor)
         {
             foreach (var asset in Assets)
             {
+                if (asset is Sandwiche)
+                {
+                    foreach (var asseting in ((Sandwiche)asset).Assets)
+                    {
+                           asseting.Accept(visitor);
+                    }
+                }
                 asset.Accept(visitor);
             }
         }
@@ -35,7 +41,7 @@ namespace LanchoneteHeavyRain
     public class Sandwiche : IAsset
     {
         public string Name { get; set; }
-        public List<Ingredient> IngredientsesList = new List<Ingredient>();
+        public List<ISandwichAsset> Assets = new List<ISandwichAsset>();
         public double Price { get; set; }
 
         public void Accept(IComboVisitor visitor)
@@ -44,9 +50,14 @@ namespace LanchoneteHeavyRain
         }
     }
 
-    public class Ingredient
+    public class Ingredient : ISandwichAsset
     {
         public string IngredientName { get; set; }
         public double Price { get; set; }
+
+        public void Accept(IComboVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 }
