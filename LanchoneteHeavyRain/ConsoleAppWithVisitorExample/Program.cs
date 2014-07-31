@@ -12,10 +12,10 @@ namespace ConsoleAppWithVisitorExample
             _empresaAtual = new Empresa();
 
             PopularDados();
-            CalcularValorTotalDaEmpresa();
+            CalcularValorTotalDeAprovacoesQueEmpresaPodeFazer();
         }
 
-        private static void CalcularValorTotalDaEmpresa()
+        private static void CalcularValorTotalDeAprovacoesQueEmpresaPodeFazer()
         {
             var totalEmCaixaVisitor = new TotalEmCaixaVisitor();
 
@@ -25,8 +25,19 @@ namespace ConsoleAppWithVisitorExample
             }
 
             Console.WriteLine(totalEmCaixaVisitor.TotalEmCaixaDaEmpresa);
-            Console.ReadKey();
         }
+
+        //private static void CalcularValorTotalDeEmContratos()
+        //{
+        //    var calcularTotalEmContratosVisitor = new CalcularTotalEmContratosVisitor();
+
+        //    foreach (var aprovador in _empresaAtual.Aprovadores)
+        //    {
+        //        aprovador.Accept(calcularTotalEmContratosVisitor);
+        //    }
+
+        //    Console.WriteLine(calcularTotalEmContratosVisitor.TotalEmContratos);
+        //}
 
         private static void PopularDados()
         {
@@ -59,41 +70,100 @@ namespace ConsoleAppWithVisitorExample
                     }
                 }
             });
+
+            _empresaAtual.Aprovadores.Add(new Diretor
+            {
+                Contratos = new List<Contrato>
+                {
+                    new Contrato
+                    {
+                        Valor = 2500
+                    },
+                    new Contrato
+                    {
+                        Valor = 1735
+                    },
+                    new Contrato
+                    {
+                        Valor = 2735
+                    },
+                    new Contrato
+                    {
+                        Valor = 852
+                    }
+                }
+            });
+
+            _empresaAtual.Aprovadores.Add(new Consultor
+            {
+                Contratos = new List<Contrato>
+                {
+                    new Contrato
+                    {
+                        Valor = 1300
+                    }
+                }
+            });
+
+            _empresaAtual.Aprovadores.Add(new Presidente
+            {
+                Contratos = new List<Contrato>
+                {
+                    new Contrato
+                    {
+                        Valor = 1550
+                    },
+                    new Contrato
+                    {
+                        Valor = 7830
+                    },
+                    new Contrato
+                    {
+                        Valor = 28030
+                    }
+                }
+            });
         }
     }
 
     public class Empresa
     {
-        public List<IAprovador> Aprovadores = new List<IAprovador>();
+        public List<Aprovador> Aprovadores = new List<Aprovador>();
     }
 
     public abstract class Aprovador
     {
         public virtual double ValorParaAprovacao { get { return 0; } }
         public virtual List<Contrato> Contratos { get; set; }
+        public virtual void Accept(IVisitor visitor)
+        {}
     }
 
     public class Consultor : Aprovador
     {
         public override double ValorParaAprovacao { get { return 1000; } }
         public override List<Contrato> Contratos { get; set; }
-    }
-
-    public class Coordenador : Aprovador, IAprovador
-    {
-        public override double ValorParaAprovacao { get { return 3000; } }
-        public override List<Contrato> Contratos { get; set; }
-        public void Accept(ITotalEmCaixaVisitor visitor)
+        public override void Accept(IVisitor visitor)
         {
             visitor.Visit(this);
         }
     }
 
-    public class Gerente : Aprovador, IAprovador
+    public class Coordenador : Aprovador
+    {
+        public override double ValorParaAprovacao { get { return 3000; } }
+        public override List<Contrato> Contratos { get; set; }
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
+    }
+
+    public class Gerente : Aprovador
     {
         public override double ValorParaAprovacao { get { return 5000; } }
         public override List<Contrato> Contratos { get; set; }
-        public void Accept(ITotalEmCaixaVisitor visitor)
+        public override void Accept(IVisitor visitor)
         {
             visitor.Visit(this);
         }
@@ -103,12 +173,20 @@ namespace ConsoleAppWithVisitorExample
     {
         public override double ValorParaAprovacao { get { return 10000; } }
         public override List<Contrato> Contratos { get; set; }
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 
     public class Presidente : Aprovador
     {
         public override double ValorParaAprovacao { get { return 50000; } }
         public override List<Contrato> Contratos { get; set; }
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 
     public class Contrato
